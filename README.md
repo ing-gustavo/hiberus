@@ -120,7 +120,7 @@
         <li><strong>Navigate to the project directory:</strong><br>
             <code>cd hiberus</code></li>
         <li><strong>Install Composer Dependencies:</strong><br>
-            <code>composer install</code></li>
+            <code>composer install or update </code></li>
         <li><strong>Copy <code>.env.example</code> to <code>.env</code>:</strong><br>
             <code>cp .env.example .env</code></li>
         <li><strong>Generate Application Key:</strong><br>
