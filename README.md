@@ -125,16 +125,11 @@
             <code>cp .env.example .env</code></li>
         <li><strong>Generate Application Key:</strong><br>
             <code>php artisan key:generate</code></li>
-        <li><strong>Configure your.env file:</strong><br></li>
-            <ul>
-                <li>Set your database credentials (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).</li>
-            </ul>
-    
-        
-        <li><strong>Run Migrations:</strong><br>
+         <li><strong>Configure your.env file:</strong><br>
+           Set your database credentials (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD)</li>
+         <li><strong>Run Migrations:</strong><br>
             <code>php artisan migrate --seed</code></li>
-       
-        <li><strong>Start the Development Server:</strong><br>
+         <li><strong>Start the Development Server:</strong><br>
             <code>php artisan serve</code></li>
         <li><strong>Access your application:</strong><br>
             Open your web browser and visit <code>http://localhost:8000</code> (or the URL where your application is served).</li>
