@@ -9,7 +9,7 @@ class DriversController extends Controller
 {
     function index()
     {
-        return view('drivers.index',['drivers' => Driver::all()]);
+       return view('drivers.index',['drivers' => Driver::orderBy('id','desc')->get()]);
     }
 
     function create()
