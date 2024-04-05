@@ -1,67 +1,145 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1>Project Documentation</h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h2>Overview</h2>
 
-## About Laravel
+<p>This document provides an overview of the decisions made during the development of the CRUD system that manages drivers, vehicles, and trips.</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h2>Project Structure</h2>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h3>Models</h3>
+<p>The project utilizes Laravel framework to build a CRUD (Create, Read, Update, Delete) system. It consists of three main tables:</p>
 
-## Learning Laravel
+<ol>
+    <li><strong>Drivers table:</strong> Stores information about drivers.</li>
+    <li><strong>Vehicles table:</strong> Stores information about vehicles.</li>
+    <li><strong>Trips table:</strong> Stores information about trips associated with drivers and vehicles.</li>
+</ol>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<h4>Driver and Vehicle relations</h4>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<pre>
+  <code class="php">
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
+    
+    public function hasTrips()
+    {
+        return $this->trips()->exists();
+    }
+  </code>
+</pre>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<h4>Trip relations</h4>
 
-## Laravel Sponsors
+<pre>
+  <code class="php">
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
+  </code>
+</pre>
 
-### Premium Partners
+<h4>Reasons for Decisions</h4>
+<ol>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+  <li>
+    The trips() function establishes a one-to-many relationship between the Driver model and the Trip model. This allows easy retrieval of trips associated with a driver.
+  </li>
 
-## Contributing
+  <li>
+    The hasTrips() function checks if the driver has any associated trips. This is useful for validation purposes, such as preventing deletion of a driver who has trips assigned.
+  </li>
+</ol>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<h3>Controller Structure</h3>
+<p>The project utilizes Laravel framework to build a CRUD (Create, Read, Update, Delete) system. It consists of three main tables:</p>
 
-## Code of Conduct
+<ol>
+    <li><strong>DriversController:</strong> Manages CRUD operations for drivers.</li>
+    <li><strong>VehiclesController:</strong> Manages CRUD operations for  vehicles.</li>
+    <li><strong>TripsController:</strong> Manages CRUD operations for trips.</li>
+</ol>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<h4>Reasons for Decisions</h4>
 
-## Security Vulnerabilities
+<ol>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  <li>
+    Separating CRUD operations into different controllers follows the principle of single responsibility, making the codebase more maintainable and easier to understand
+  </li>
+</ol>
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# hiberus
+<h2>Functions in TripsController</h2>
+
+<ol>
+    <li><strong>index:</strong> Displays a list of trips.</li>
+    <li><strong>create:</strong> Displays a form to create a new trip.</li>
+    <li><strong>selectVehicle:</strong> Handles the selection of a vehicle based on the selected date.</li>
+    <li><strong>selectDriver:</strong> Handles the selection of a driver based on the selected date and vehicle.</li>
+    <li><strong>store:</strong> Stores the newly created trip.</li>
+</ol>
+
+<h4>Reasons</h4>
+<ol>
+    <li>The index, create, and store functions are standard CRUD operations for managing trips</li>
+    <li>The selectVehicle function implements the first phase of trip reservation, allowing the user to select a date and then displaying only vehicles that do not have a trip scheduled on that date.</li>
+    <li>The selectDriver function implements the second phase of trip reservation, allowing the user to select a driver whose license matches the selected vehicle and who does not have a trip scheduled on the selected date</li>
+</ol>
+
+<h2>Guarding Deletion of Drivers and Vehicles</h2>
+<p>In the deleted function of both DriversController and VehiclesController, a guard clause was added to prevent deletion if the driver or vehicle has associated trips.</p>
+<p>By guarding against deletion of drivers or vehicles with associated trips, data integrity is maintained, and potential errors are avoided</p>
+
+
+ <h1>Installation Instructions</h1>
+
+    
+  <h2>Prerequisites</h2>
+  <p>List of prerequisites required to run the application. For example:</p>
+  <ul>
+      <li>PHP (version)</li>
+      <li>Composer</li>
+      <li>MySQL or any other database system</li>
+  </ul>
+
+  <h2>Installation</h2>
+    <ol>
+      <li>
+        <strong>Clone the repository:</strong><br>
+            <code>git clone [repository_url]</code></li>
+        <li><strong>Navigate to the project directory:</strong><br>
+            <code>cd [project_directory]</code></li>
+        <li><strong>Install Composer Dependencies:</strong><br>
+            <code>composer install</code></li>
+        <li><strong>Copy <code>.env.example</code> to <code>.env</code>:</strong><br>
+            <code>cp .env.example .env</code></li>
+        <li><strong>Generate Application Key:</strong><br>
+            <code>php artisan key:generate</code></li>
+        <li><strong>Configure your <code>.env</code> file:</strong><br>
+            <ul>
+                <li>Set your database credentials (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).</li>
+                <li>Set any other configuration variables required by your application.</li>
+            </ul>
+        </li>
+        <li><strong>Run Migrations:</strong><br>
+            <code>php artisan migrate</code></li>
+        <li><strong>Seed Database:</strong><br>
+            If your application requires seeding the database with dummy data:<br>
+            <code>php artisan db:seed</code></li>
+        <li><strong>Start the Development Server:</strong><br>
+            <code>php artisan serve</code></li>
+        <li><strong>Access your application:</strong><br>
+            Open your web browser and visit <code>http://localhost:8000</code> (or the URL where your application is served).</li>
+    </ol>
+
+
