@@ -125,7 +125,7 @@
             <code>cp .env.example .env</code></li>
         <li><strong>Generate Application Key:</strong><br>
             <code>php artisan key:generate</code></li>
-        <li><strong>Configure your <code>.env</code> file:</strong><br></li>
+        <li><strong>Configure your.env file:</strong><br></li>
             <ul>
                 <li>Set your database credentials (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).</li>
             </ul>
