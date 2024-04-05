@@ -132,10 +132,8 @@
             </ul>
         </li>
         <li><strong>Run Migrations:</strong><br>
-            <code>php artisan migrate</code></li>
-        <li><strong>Seed Database:</strong><br>
-            If your application requires seeding the database with dummy data:<br>
-            <code>php artisan db:seed</code></li>
+            <code>php artisan migrate --seed</code></li>
+       
         <li><strong>Start the Development Server:</strong><br>
             <code>php artisan serve</code></li>
         <li><strong>Access your application:</strong><br>
