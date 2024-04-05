@@ -11,7 +11,7 @@ class TripsController extends Controller
 {
     function index()
     {
-        $trips = Trip::with('driver','vehicle')->whereNotNull('vehicle_id')->whereNotNull('driver_id')->get();
+        $trips = Trip::with('driver','vehicle')->orderBy('id','desc')->get();
         return view('trips.index',['trips' => $trips ]);
     }
 
