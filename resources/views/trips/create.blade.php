@@ -11,7 +11,7 @@
 
             
 
-            <form class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2" action="{{ route('trips.store') }}" method="POST">
+            <form class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2" action="{{ route('trips.selectVehicle') }}" method="POST">
                 @csrf
                 <div class="px-4 py-6 sm:p-8">
 

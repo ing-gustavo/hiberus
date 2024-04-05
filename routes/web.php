@@ -29,8 +29,6 @@ Route::resource('drivers', DriversController::class);
 //Trips
 Route::get('trips', [TripsController::class,'index'])->name('trips.index');
 Route::get('trips/create', [TripsController::class,'create'])->name('trips.create');
-Route::post('trips', [TripsController::class,'store'])->name('trips.store');
-Route::get('trips/selectVehicle',[TripsController::class,'selectVehicle'])->name('trips.selectVehicle');
-Route::post('trips/storeVehicle',[TripsController::class,'storeVehicle'])->name('trips.storeVehicle');
-Route::get('trips/selectDriver',[TripsController::class,'selectDriver'])->name('trips.selectDriver');
-Route::post('trips/storeDriver',[TripsController::class,'storeDriver'])->name('trips.storeDriver');
+Route::post('trips/selectVehicle',[TripsController::class,'selectVehicle'])->name('trips.selectVehicle');
+Route::post('trips/selectDriver',[TripsController::class,'selectDriver'])->name('trips.selectDriver');
+Route::post('trips/store',[TripsController::class,'store'])->name('trips.store');

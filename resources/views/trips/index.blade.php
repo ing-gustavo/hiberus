@@ -78,12 +78,5 @@
         </div>
 
     </div>
-
-    @push('scripts')
-        <script>
-            document.onsubmit = function(){
-                return confirm('Sure?');
-            }
-        </script>
-    @endpush
+    
 </x-layout>

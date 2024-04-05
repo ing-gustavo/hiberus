@@ -20,15 +20,6 @@ class TripsController extends Controller
         return view('trips.create');
     }
 
-    function store(Request $request)
-    {
-        $request->validate([
-            'date'      => 'required|date',
-        ]);
-
-        return redirect()->route('trips.selectVehicle', ['date' => $request->date]);
-    }
-
     function selectVehicle(Request $request){
         
         $request->validate([
@@ -41,16 +32,6 @@ class TripsController extends Controller
 
 
         return view('trips.select_vehicle',['vehicles' => $vehicles,'date' => $request->date]);
-    }
-
-    function storeVehicle(Request $request)
-    {
-        $request->validate([
-            'vehicle_id'    => 'required|numeric',
-            'date'          => 'required|date',
-        ]);
-
-        return redirect()->route('trips.selectDriver', ['date' => $request->date,'vehicle_id' => $request->vehicle_id]);
     }
 
     function selectDriver(Request $request)
@@ -73,7 +54,7 @@ class TripsController extends Controller
         return view('trips.select_driver',['date' => $request->date,'vehicle_id' => $request->vehicle_id,'availableDrivers' => $availableDrivers]);
     }
 
-    function storeDriver(Request $request)
+    function store(Request $request)
     {
         $validated = $request->validate([
             'vehicle_id'    => 'required|numeric',

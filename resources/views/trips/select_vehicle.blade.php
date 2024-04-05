@@ -34,7 +34,7 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $vehicle->licenseRequired }}</td>
                                 
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <form action="{{route('trips.storeVehicle')}}" method="post">
+                                    <form action="{{route('trips.selectDriver')}}" method="post">
                                         @method('POST')
                                         @csrf
                                         <input type="hidden" name="date" value="{{$date}}">
