@@ -9,7 +9,7 @@ class VehicleController extends Controller
 {
     function index()
     {
-        return view('vehicles.index',['vehicles' => Vehicle::all()]);
+       return view('vehicles.index',['vehicles' => Vehicle::orderBy('id','desc')->get()]);
     }
 
     function create()
