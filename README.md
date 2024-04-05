@@ -128,7 +128,6 @@
         <li><strong>Configure your <code>.env</code> file:</strong><br>
             <ul>
                 <li>Set your database credentials (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).</li>
-                <li>Set any other configuration variables required by your application.</li>
             </ul>
         </li>
         <li><strong>Run Migrations:</strong><br>
