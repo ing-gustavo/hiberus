@@ -118,7 +118,7 @@
         <strong>Clone the repository:</strong><br>
             <code>git clone https://github.com/ing-gustavo/hiberus.git</code></li>
         <li><strong>Navigate to the project directory:</strong><br>
-            <code>cd [project_directory]</code></li>
+            <code>cd hiberus</code></li>
         <li><strong>Install Composer Dependencies:</strong><br>
             <code>composer install</code></li>
         <li><strong>Copy <code>.env.example</code> to <code>.env</code>:</strong><br>
