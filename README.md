@@ -131,6 +131,7 @@
                 <li>Database name is hiberus.</li>
             </ul>
         </li>
+        
         <li><strong>Run Migrations:</strong><br>
             <code>php artisan migrate --seed</code></li>
        
