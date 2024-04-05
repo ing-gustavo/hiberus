@@ -11,8 +11,7 @@ class TripsController extends Controller
 {
     function index()
     {
-        $trips = Trip::with('driver','vehicle')->orderBy('id','desc')->get();
-        return view('trips.index',['trips' => $trips ]);
+        return view('trips.index',['trips' => Trip::with('driver','vehicle')->orderBy('id','desc')->get() ]);
     }
 
     function create(Request $request)
